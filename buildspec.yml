@@ -19,6 +19,10 @@ phases:
     post_build:
         commands: 
             - echo Build complete on `date` 
+artifacts:
+    files: 
+        - app
+        - buildspec.yml
 
 
 
