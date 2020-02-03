@@ -1,0 +1,13 @@
+version: 0.02
+phases:
+    pre_build: 
+        commands:
+            - echo "About to build application"
+    build:
+        commands: 
+            - go build *.go
+    post_build:
+        commands: 
+            - echo "Successfully build test application!"
+
+
