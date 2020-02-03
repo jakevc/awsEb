@@ -1,13 +1,24 @@
 version: 0.02
+
+env:
+    variables:
+        GOOS: "linux"
 phases:
-    pre_build: 
+    install:
         commands:
-            - echo "About to build application"
+            - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
+            - echo GOPATH - $GOPATH
+            - echo GOROOT - $GOROOT
+            - echo Moving Packages...
+            - cp -r ./vendor/* /go/src/
     build:
         commands: 
-            - go build *.go
+            - echo Build started on `date`
+            - echo Compiling go code..
+            - go build -o app main.go
     post_build:
         commands: 
-            - echo "Successfully build test application!"
+            - echo Build complete on `date` 
+
 
 
