@@ -44,7 +44,8 @@ phases:
             
             # logs build 
             - echo Compiling go code..
-            - go build main.go
+            # AWS code deploy expects binary called app 
+            - go build -o app main.go
 
     post_build:
         commands: 
