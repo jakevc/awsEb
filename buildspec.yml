@@ -11,9 +11,6 @@ phases:
             golang: 1.13
         commands:
 
-            # list env variables
-            - env
-
             # link package to codebuild src dir 
             - mkdir -p "/go/src/$(dirname ${PACKAGE})"
             - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}" 
