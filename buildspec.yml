@@ -52,7 +52,7 @@ phases:
             - echo Build complete on `date` 
 artifacts:
     files: 
-        - main 
+        - app 
         - buildspec.yml
 
 
