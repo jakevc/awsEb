@@ -12,19 +12,19 @@ phases:
         commands:
 
             # link package to codebuild src dir 
-            - mkdir -p "/go/src/$(dirname ${PACKAGE})"
-            - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/${PACKAGE}" 
-            # Print all environment variables (handy for AWS CodeBuild logs)
-            - env
+            - ln -s "${CODEBUILD_SRC_DIR}" "/go/src/handler"
 
             # Install golint
             - go get -u golang.org/x/lint/golint
+
+            # install testify
+            - go get -u github.com/stretchr/testify
 
     pre_build:
         commands:
 
           # Make sure we're in the project directory within our GOPATH
-          - cd "/go/src/${PACKAGE}"
+          - cd "/go/src/handler"
 
           # Fetch all dependencies
           - go get -t ./...
@@ -45,7 +45,7 @@ phases:
             # logs build 
             - echo Compiling go code..
             # AWS code deploy expects binary called app 
-            - go build -o /go/src/app main.go
+            - go build -o main
             # echo environment
             - ls /go/src/
 
@@ -54,7 +54,7 @@ phases:
             - echo Build complete on `date` 
 artifacts:
     files: 
-        - app 
+        - main 
         - buildspec.yml
 
 
