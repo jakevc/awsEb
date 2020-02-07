@@ -3,7 +3,6 @@ version: 0.2
 env:
     variables:
         GOOS: "linux"
-        PACKAGE: "github.com/jakevc/awsEbTest"
 
 phases:
     install:

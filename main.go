@@ -30,6 +30,12 @@ func main() {
 		respond(w, resp)
 	})
 
+	// handle /health
+	r.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		resp := message(true, "Healthy!")
+		respond(w, resp)
+	})
+
 	// log and serve
 	log.Printf("Listening on port: %s", PORT)
 	log.Fatal(http.ListenAndServe(PORT, r))
